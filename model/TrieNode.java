@@ -24,6 +24,10 @@ public class TrieNode extends Node{
         TrieNode node = addChildIfNeeded(word.charAt(0));
         if (word.length() > 1) {
             node.addWord(word.substring(1));
+        }else {
+            node.setLeaf();
         }
     }
+
+    public void setLeaf(){isLeaf = true;}
 }

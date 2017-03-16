@@ -25,7 +25,7 @@ public class BoggleSearch {
             for (int j = 0; j < board.getSize(); j++) {
                 searchFurther(dictionary, i, j, "");
             }
-        }
+        }System.out.print("done");
     }
 
     private void searchFurther(Node searchFrom, int col, int row, String prefix) {
@@ -37,7 +37,7 @@ public class BoggleSearch {
 
 
             if (n != null) {
-                if (n.isLeaf()) found.add(prefix + searchable);
+                if (n.isLeaf()) {found.add(prefix + searchable); System.out.println(prefix + searchable);}
                 searchFurther(n, neighbours[i][0], neighbours[i][1], prefix + searchable);
             }
         }
