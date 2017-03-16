@@ -12,21 +12,21 @@ import java.util.ResourceBundle;
 public class ViewController implements Initializable{
 
     @FXML
-    private GridPane bord;
+    private GridPane bordView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         drawBord();
     }
 
-    public void drawBord() {
+    private void drawBord() {
         Board b = new Board();
         for (int i = 0; i < b.getSize(); i++) {
             for (int j = 0; j < b.getSize(); j++) {
-                bord.add(new Label(new StringBuilder().append(b.getChar(i,j)).toString()), i, j);
+                bordView.add(new Label(String.valueOf(b.getChar(i, j))), i, j);
             }
         }
-        bord.setHgap(10);
-        bord.setVgap(10);
+        bordView.setHgap(10);
+        bordView.setVgap(10);
     }
 }

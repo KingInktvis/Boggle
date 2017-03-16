@@ -25,6 +25,5 @@ public class TrieNode extends Node{
         if (word.length() > 1) {
             node.addWord(word.substring(1));
         }
-
     }
 }

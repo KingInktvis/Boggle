@@ -24,7 +24,7 @@
                   </HBox>
                </children>
             </VBox>
-            <GridPane fx:id="bord">
+            <GridPane fx:id="bordView">
               <columnConstraints>
               </columnConstraints>
               <rowConstraints>
