@@ -15,14 +15,20 @@ public class Node {
     public TrieNode addChildIfNeeded(char c) {
         //http://stackoverflow.com/a/85206
 
+        TrieNode existing = hasChild(c);
+        if (existing != null) return existing;
+        TrieNode n = new TrieNode(c);
+        addChild(n);
+        return n;
+    }
+
+    public TrieNode hasChild(char c) {
         for(Iterator<TrieNode> i = children.iterator(); i.hasNext(); ) {
             TrieNode item = i.next();
             if (item.getCharacter() == c) {
                 return item;
             }
         }
-        TrieNode n = new TrieNode(c);
-        addChild(n);
-        return n;
+        return null;
     }
 }

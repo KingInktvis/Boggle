@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ReadDictionary {
+    public static TrieNode root;
+
     public ReadDictionary(){
         int i = 0;
         TrieNode t = new TrieNode();
@@ -24,5 +26,10 @@ public class ReadDictionary {
         }catch (IOException e){
             System.out.print(e);
         }
+        root = t;
+    }
+
+    public TrieNode getRoot() {
+        return root;
     }
 }

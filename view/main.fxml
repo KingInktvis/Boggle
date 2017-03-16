@@ -18,7 +18,7 @@
                   <ScrollPane prefHeight="200.0" prefWidth="200.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Start" />
+                        <Button mnemonicParsing="false" text="Start" onAction="#start"/>
                         <Button mnemonicParsing="false" text="reset" />
                      </children>
                   </HBox>
