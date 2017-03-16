@@ -12,13 +12,16 @@ public class Node {
         children.add(node);
     }
 
-    public void addChildIfNeeded(char c) {
+    public TrieNode addChildIfNeeded(char c) {
         //http://stackoverflow.com/a/85206
         for(Iterator<TrieNode> i = children.iterator(); i.hasNext(); ) {
             TrieNode item = i.next();
             if (item.getCharacter() == c) {
-                return;
+                return item;
             }
         }
+        TrieNode n = new TrieNode(c);
+        addChild(n);
+        return n;
     }
 }
