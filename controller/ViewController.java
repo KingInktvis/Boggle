@@ -2,10 +2,13 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import model.Board;
 import model.ReadDictionary;
 
@@ -17,12 +20,14 @@ public class ViewController implements Initializable{
     @FXML
     private GridPane bordView;
     @FXML
-    private ScrollPane found;
+    private TextArea found;
     private BoggleSearch search;
+    @FXML
+    private Label amount;
 
     public ViewController() {
         ReadDictionary dic = new ReadDictionary();
-        search = new BoggleSearch(dic.getRoot(), new Board(), found);
+        search = new BoggleSearch(dic.getRoot(), new Board());
     }
 
     @Override
@@ -47,5 +52,15 @@ public class ViewController implements Initializable{
     @FXML
     private void start() {
         search.Start();
+        drawFoundWords();
+    }
+
+    private void drawFoundWords() {
+        String list = "";
+        for (String word : search.getFoundedWords()) {
+            list = list + word + "\n";
+        }
+        found.setText(list);
+        amount.setText(Integer.toString(search.getFoundedWords().size()));
     }
 }

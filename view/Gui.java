@@ -18,7 +18,7 @@ public class Gui extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("Boggle");
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../res/stackoverflowicon.png")));
-        primaryStage.setScene(new Scene(root, 800, 500));
+        primaryStage.setScene(new Scene(root, 1000, 700));
         primaryStage.show();
     }
 }
