@@ -6,6 +6,7 @@ import model.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class BoggleSearch {
@@ -23,7 +24,8 @@ public class BoggleSearch {
     public void Start() {
         for (int i = 0; i < board.getSize(); i++) {System.out.print(i);
             for (int j = 0; j < board.getSize(); j++) {
-                searchFurther(dictionary, i, j, "");
+//                searchFurther(dictionary, i, j, "");
+                search(dictionary, new Coordinate(i, j), "");
             }
         }System.out.print("===done===");
     }
@@ -50,7 +52,15 @@ public class BoggleSearch {
 
 
     private void search(TrieNode node, Coordinate cord, String prefix) {
+        if (node.isLeaf()) System.out.print(prefix);
         ArrayList<Coordinate> options = board.getNeighbourLocations(cord);
+        for (Coordinate item : options) {
+            char c = board.getChar(item);
+            TrieNode next = node.hasChild(c);
+            if (next != null) {
+                search(next, item, prefix + c);
+            }
+        }
     }
 
 }

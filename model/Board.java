@@ -78,6 +78,10 @@ public class Board {
         return board[col][row];
     }
 
+    public char getChar(Coordinate coordinate){
+        return board[coordinate.getCol()][coordinate.getRow()];
+    }
+
     public int getSize(){
         return size;
     }
@@ -98,7 +102,7 @@ public class Board {
                 }
             }
         }
-        return null;
+        return neighbours;
     }
 
     public void addUsedCoordinate(Coordinate cord){
