@@ -1,12 +1,15 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
 
     public static int size = 4;
     public static char[][] board;
-    private boolean[][] used;
+    public boolean[][] used;
+    private ArrayList<Coordinate> usedCor = new ArrayList<Coordinate>();
+
 
     public Board(){
         resetUsed();
@@ -24,20 +27,26 @@ public class Board {
         }
     }
 
-    public int[][] getNeighbours(int col, int row) {
-        int[][] ret = new int[8][2];
-        int index = 0;
+    public ArrayList<int[]> getNeighbours(int col, int row) {
+//        int[][] ret = new int[8][2];
+        ArrayList<int[]> retList = new ArrayList<int[]>();
+//        int index = 0;
+
         for (int i = col - 1; i <= col + 1; i++) {
             if (i < 0 || i >= size) continue;
+
             for (int j = row - 1; j <= row + 1; j++) {
                 if (j < 0 || j >= size) continue;
-                if (!used[col][row]) {
-                    ret[index][0] = i;
-                    ret[index][1] = j;
-                }
+                if (used[col][row]) continue;
+                if (i == col && j == row) continue;
+                int[] temp = {i, j};
+//                    ret[index][0] = i;
+//                    ret[index][1] = j;
+                retList.add(temp);
             }
         }
-        return ret;
+//        return ret;
+        return retList;
     }
 
     private void resetUsed() {
@@ -54,7 +63,7 @@ public class Board {
     }
 
     public void setUnused(int col, int row) {
-        used[col][row] = true;
+        used[col][row] = false;
     }
 
     public void printBoard() {
@@ -71,5 +80,32 @@ public class Board {
 
     public int getSize(){
         return size;
+    }
+
+    public ArrayList<Coordinate> getNeighbourLocations(Coordinate cord) {
+
+        ArrayList<Coordinate> neighbours = new ArrayList<Coordinate>();
+        int rowLow = cord.getRow() == 0 ? 0 : cord.getRow() - 1;
+        int rowHigh = cord.getRow() == size - 1 ? size - 1 : cord.getRow() + 1;
+        int colLow = cord.getCol() == 0 ? 0 : cord.getCol() - 1;
+        int colHigh = cord.getCol() == size - 1 ? size - 1 : cord.getCol() + 1;
+
+        for (int i = colLow; i <= colHigh; i++) {
+            for (int j = rowLow; j <= rowHigh; j++) {
+                Coordinate around = new Coordinate(i, j);
+                if (usedCor.contains(around)) {
+                    neighbours.add(around);
+                }
+            }
+        }
+        return null;
+    }
+
+    public void addUsedCoordinate(Coordinate cord){
+        usedCor.add(cord);
+    }
+
+    public void removeLastUsedCoordinate(){
+        usedCor.remove(usedCor.size() - 1);
     }
 }

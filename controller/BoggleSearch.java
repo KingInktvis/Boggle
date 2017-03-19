@@ -1,10 +1,8 @@
 package controller;
 
 
-import model.Board;
-import model.Node;
-import model.RootNode;
-import model.TrieNode;
+import javafx.scene.control.ScrollPane;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,32 +12,45 @@ public class BoggleSearch {
     private TrieNode dictionary;
     private Board board;
     private LinkedList<String> found = new LinkedList<String>();
+    private ScrollPane display;
 
-    public BoggleSearch(TrieNode node, Board board) {
+    public BoggleSearch(TrieNode node, Board board, ScrollPane display) {
         this.dictionary = node;
         this.board = board;
+        this.display = display;
     }
 
     public void Start() {
-        for (int i = 0; i < board.getSize(); i++) {
+        for (int i = 0; i < board.getSize(); i++) {System.out.print(i);
             for (int j = 0; j < board.getSize(); j++) {
                 searchFurther(dictionary, i, j, "");
             }
-        }System.out.print("done");
+        }System.out.print("===done===");
     }
 
-    private void searchFurther(Node searchFrom, int col, int row, String prefix) {
-        int[][] neighbours = board.getNeighbours(col, row);
+    private void searchFurther(TrieNode searchFrom, int col, int row, String prefix) {
 
-        for (int i = 0; i < neighbours.length; i++) {
-            char searchable = board.getChar(neighbours[i][0], neighbours[i][1]);
-            TrieNode n = searchFrom.hasChild(searchable);
-
+        ArrayList<int[]> neighbours = board.getNeighbours(col, row);//get the field that contain chars that can be added. index 0 is the column and index 1 is the row.
+        board.setUsed(col, row);
+        for (int i = 0; i < neighbours.size(); i++) {//for every possible neighbour.
+            char searchable = board.getChar(neighbours.get(i)[0], neighbours.get(i)[1]);//get the char of this field
+            TrieNode n = searchFrom.hasChild(searchable);//look if there is a word that continues with this character. and return this node
 
             if (n != null) {
-                if (n.isLeaf()) {found.add(prefix + searchable); System.out.println(prefix + searchable);}
-                searchFurther(n, neighbours[i][0], neighbours[i][1], prefix + searchable);
+                String newWord = prefix + n.getCharacter();
+                if (n.isLeaf()) {
+                    found.add(newWord);
+                    System.out.println(newWord);
+                }
+                searchFurther(n, neighbours.get(i)[0], neighbours.get(i)[1], newWord);
             }
         }
+        board.setUnused(col, row);
     }
+
+
+    private void search(TrieNode node, Coordinate cord, String prefix) {
+        ArrayList<Coordinate> options = board.getNeighbourLocations(cord);
+    }
+
 }
