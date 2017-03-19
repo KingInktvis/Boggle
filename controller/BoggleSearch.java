@@ -28,6 +28,7 @@ public class BoggleSearch {
                 search(dictionary, new Coordinate(i, j), "");
             }
         }System.out.print("===done===");
+        printFounded();
     }
 
     private void searchFurther(TrieNode searchFrom, int col, int row, String prefix) {
@@ -53,20 +54,32 @@ public class BoggleSearch {
 
     private void search(TrieNode node, Coordinate cord, String prefix) {
 
-        if (node.isLeaf()) System.out.println(prefix);
-
         board.addUsedCoordinate(cord);
+
         ArrayList<Coordinate> options = board.getNeighbourLocations(cord);
 
         for (Coordinate item : options) {
             char c = board.getChar(item);
             TrieNode next = node.hasChild(c);
             if (next != null) {
+                if (next.isLeaf()) addFoundWord(prefix + c);
                 search(next, item, prefix + c);
             }
         }
 
         board.removeLastUsedCoordinate();
+    }
+
+    private void addFoundWord(String word) {
+        if (!found.contains(word)) {
+            found.add(word);
+        }
+    }
+
+    private void printFounded(){
+        for (String word : found) {
+            System.out.println(word);
+        }
     }
 
 }

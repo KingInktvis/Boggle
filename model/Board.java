@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Board {
 
-    public static int size = 4;
+    public static int size = 10;
     public static char[][] board;
     public boolean[][] used;
     private ArrayList<Coordinate> usedCor = new ArrayList<Coordinate>();
