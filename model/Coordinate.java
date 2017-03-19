@@ -17,5 +17,16 @@ public class Coordinate {
         return row;
     }
 
+    @Override
+    public boolean equals(Object object){
+        boolean isSame = false;
 
+        if (object != null && object instanceof Coordinate) {
+            Coordinate o = (Coordinate) object;
+            if (col == o.getCol() && row == o.getRow()) {
+                isSame = true;
+            }
+        }
+        return isSame;
+    }
 }
