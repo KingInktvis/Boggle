@@ -52,8 +52,12 @@ public class BoggleSearch {
 
 
     private void search(TrieNode node, Coordinate cord, String prefix) {
-        if (node.isLeaf()) System.out.print(prefix);
+
+        if (node.isLeaf()) System.out.println(prefix);
+
+        board.addUsedCoordinate(cord);
         ArrayList<Coordinate> options = board.getNeighbourLocations(cord);
+
         for (Coordinate item : options) {
             char c = board.getChar(item);
             TrieNode next = node.hasChild(c);
@@ -61,6 +65,8 @@ public class BoggleSearch {
                 search(next, item, prefix + c);
             }
         }
+
+        board.removeLastUsedCoordinate();
     }
 
 }

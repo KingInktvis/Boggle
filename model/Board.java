@@ -97,7 +97,7 @@ public class Board {
         for (int i = colLow; i <= colHigh; i++) {
             for (int j = rowLow; j <= rowHigh; j++) {
                 Coordinate around = new Coordinate(i, j);
-                if (usedCor.contains(around)) {
+                if (!usedCor.contains(around)) {
                     neighbours.add(around);
                 }
             }
