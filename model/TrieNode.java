@@ -8,13 +8,16 @@ public class TrieNode{
     private char character;
     private ArrayList<TrieNode> children = new ArrayList<TrieNode>();
 
+    public TrieNode(char character) {
+        this.character = character;
+    }
+    public TrieNode() {}
+
     public void addChild(TrieNode node) {
         children.add(node);
     }
 
     public TrieNode addChildIfNeeded(char c) {
-        //http://stackoverflow.com/a/85206
-
         TrieNode existing = hasChild(c);
         if (existing != null) return existing;
         TrieNode n = new TrieNode(c);
@@ -23,6 +26,7 @@ public class TrieNode{
     }
 
     public TrieNode hasChild(char c) {
+        //http://stackoverflow.com/a/85206
         for(Iterator<TrieNode> i = children.iterator(); i.hasNext(); ) {
             TrieNode item = i.next();
             if (item.getCharacter() == c) {
@@ -30,13 +34,6 @@ public class TrieNode{
             }
         }
         return null;
-    }
-
-    public TrieNode(char character) {
-        this.character = character;
-    }
-    public TrieNode() {
-
     }
 
     public char getCharacter() {
