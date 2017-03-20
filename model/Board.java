@@ -27,23 +27,6 @@ public class Board {
         }
     }
 
-    public ArrayList<int[]> getNeighbours(int col, int row) {
-        ArrayList<int[]> retList = new ArrayList<int[]>();
-
-        for (int i = col - 1; i <= col + 1; i++) {
-            if (i < 0 || i >= size) continue;
-
-            for (int j = row - 1; j <= row + 1; j++) {
-                if (j < 0 || j >= size) continue;
-                if (used[col][row]) continue;
-                if (i == col && j == row) continue;
-                int[] temp = {i, j};
-                retList.add(temp);
-            }
-        }
-        return retList;
-    }
-
     private void resetUsed() {
         used = new boolean[size][size];
         for (int i = 0; i < size; i++) {
