@@ -28,9 +28,7 @@ public class Board {
     }
 
     public ArrayList<int[]> getNeighbours(int col, int row) {
-//        int[][] ret = new int[8][2];
         ArrayList<int[]> retList = new ArrayList<int[]>();
-//        int index = 0;
 
         for (int i = col - 1; i <= col + 1; i++) {
             if (i < 0 || i >= size) continue;
@@ -40,12 +38,9 @@ public class Board {
                 if (used[col][row]) continue;
                 if (i == col && j == row) continue;
                 int[] temp = {i, j};
-//                    ret[index][0] = i;
-//                    ret[index][1] = j;
                 retList.add(temp);
             }
         }
-//        return ret;
         return retList;
     }
 
@@ -54,22 +49,6 @@ public class Board {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 used[i][j] = false;
-            }
-        }
-    }
-
-    public void setUsed(int col, int row) {
-        used[col][row] = true;
-    }
-
-    public void setUnused(int col, int row) {
-        used[col][row] = false;
-    }
-
-    public void printBoard() {
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                System.out.print(board[i][j]);
             }
         }
     }
