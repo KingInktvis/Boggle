@@ -10,7 +10,6 @@ public class Board {
     public boolean[][] used;
     private ArrayList<Coordinate> usedCor = new ArrayList<Coordinate>();
 
-
     public Board(){
         resetUsed();
     }

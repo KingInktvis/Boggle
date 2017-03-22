@@ -1,12 +1,12 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class TrieNode{
     private boolean isLeaf;
     private char character;
-    private ArrayList<TrieNode> children = new ArrayList<TrieNode>();
+    private LinkedList<TrieNode> children = new LinkedList<TrieNode>();
 
     public TrieNode(char character) {
         this.character = character;
@@ -14,7 +14,7 @@ public class TrieNode{
     public TrieNode() {}
 
     public void addChild(TrieNode node) {
-        children.add(node);
+        children.addFirst(node);
     }
 
     public TrieNode addChildIfNeeded(char c) {
