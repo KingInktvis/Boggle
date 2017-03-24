@@ -21,10 +21,12 @@ public class ViewController implements Initializable{
     private BoggleSearch search;
     @FXML
     private Label amount;
+    private Board board;
 
     public ViewController() {
+    	board = new Board();
         ReadDictionary dic = new ReadDictionary();
-        search = new BoggleSearch(dic.getRoot(), new Board());
+        search = new BoggleSearch(dic.getRoot(), board);
     }
 
     @Override
@@ -33,11 +35,10 @@ public class ViewController implements Initializable{
     }
 
     private void drawBord() {
-        Board b = new Board();
         Font font = new Font("Arial", 40);
-        for (int i = 0; i < b.getSize(); i++) {
-            for (int j = 0; j < b.getSize(); j++) {
-                Label label = new Label(String.valueOf(b.getChar(i, j)));
+        for (int i = 0; i < board.getSize(); i++) {
+            for (int j = 0; j < board.getSize(); j++) {
+                Label label = new Label(String.valueOf(board.getChar(i, j)));
                 label.setFont(font);
                 bordView.add(label, i, j);
             }
